@@ -1,6 +1,6 @@
 class AddToCartLocators{
 
-    
+   //cant use get here because we are passing a parameter 
     async productFromList(productname){
         const productXpath = `//a[contains(@href,'182')]/span[contains(text(),'${productname}')]`
         return $(productXpath);
