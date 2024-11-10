@@ -2,12 +2,13 @@ class AddToCartLocators{
 
    //cant use get here because we are passing a parameter 
     async productFromList(productname){
-        const productXpath = `//a[contains(@href,'182')]/span[contains(text(),'${productname}')]`
+        // const productXpath = `//a[contains(@href,'182')]/span[contains(text(),'${productname}')]`
+        const productXpath = `//a[contains(@href,'')]/span[contains(text(),'${productname}')]`
         return $(productXpath);
     }
 
-    get size(){
-        return $("//a[@href='#' and contains(text(),'S')]");
+    size(num){
+        return $(`(//ul[contains(@class, 'variant-option-list')]/li)[${num}]`);
     }
 
     get color(){

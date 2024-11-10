@@ -21,7 +21,7 @@ describe("Demo Evershop site product purchase journey",()=> {  //This is the tes
 
        //before making the search name dynamic 
        await SearchActions.clickOnSearchIcon();
-       await SearchActions.enterSearchItemName("Nike"); // enter search keyword
+       await SearchActions.enterSearchItemName(productname); // enter search keyword
        await browser.keys("Enter") ;//press enter from keyboard
         // await browser.quit()
         
@@ -29,7 +29,10 @@ describe("Demo Evershop site product purchase journey",()=> {  //This is the tes
 
     it("Should able to successfully Add Product into the cart", async() =>{ //Test case
         await AddToCartActions.clickOnProductFromList(productname);
-        await AddToCartActions.selectSize();
+        // await AddToCartActions.selectSize();
+        //to select product size dynamically
+        const sizenum = await utility.getRandomInt(1,2)
+        await AddToCartActions.selectSize(sizenum);
         await AddToCartActions.selectColor();
         await AddToCartActions.enterQuantity(productqty);
         singleProductPrice = await addToCartActions.getSingleProductPrice();

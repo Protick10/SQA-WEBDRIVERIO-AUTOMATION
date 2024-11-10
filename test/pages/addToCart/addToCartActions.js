@@ -8,8 +8,8 @@ class AddToCartActions{
         await (await AddToCartLocators.productFromList(productname)).click();// here there is two await because first await is for locator's productionfromlist method and second await is for click method
     }
 
-    async selectSize(){
-        await AddToCartLocators.size.click();
+    async selectSize(num){
+        await AddToCartLocators.size(num).click();
         await browser.pause(2000);
     }
 
