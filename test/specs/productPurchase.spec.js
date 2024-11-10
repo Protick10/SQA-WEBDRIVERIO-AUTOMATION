@@ -2,7 +2,12 @@
 
 const SearchActions = require("../pages/search/searchActions");
 const AddToCartActions = require("../pages/addToCart/addToCartActions");
+const addToCartActions = require("../pages/addToCart/addToCartActions");
+const CheckoutActions = require("../pages/checkout/checkoutAction");
+const checkoutAction = require("../pages/checkout/checkoutAction");
 const productname = "Nike react phantom run flyknit 2"
+const productqty = 2
+var singleProductPrice;
 describe("Demo Evershop site product purchase journey",()=> {  //This is the test suite
 
     it("Should able to successfully search product", async() =>{ //Test case
@@ -17,10 +22,25 @@ describe("Demo Evershop site product purchase journey",()=> {  //This is the tes
         await AddToCartActions.clickOnProductFromList(productname);
         await AddToCartActions.selectSize();
         await AddToCartActions.selectColor();
-        await AddToCartActions.enterQuantity();
+        await AddToCartActions.enterQuantity(productqty);
+        singleProductPrice = await addToCartActions.getSingleProductPrice();
         await AddToCartActions.clickOnAddToCart();
         await AddToCartActions.clickOnViewCart();
         // await browser.quit()
+    
+    });
+
+    it("Should able to successfully verify the product price", async() =>{ //Test case
+        // const singleProductPrice = await addToCartActions.getSingleProductPrice();
+        const expectedTotalPrice = singleProductPrice * productqty;
+
+        const actualSubtotal = await CheckoutActions.getSubTotal();
+        const actualGrandTotal = await checkoutAction.getGrandTotal();
+
+        expect(actualSubtotal).toEqual(expectedTotalPrice);
+        expect(actualGrandTotal).toEqual(expectedTotalPrice);
+
+
     
     });
 });

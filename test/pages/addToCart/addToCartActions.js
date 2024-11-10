@@ -1,4 +1,5 @@
 const AddToCartLocators = require('../../pages/addToCart/addToCratLocators');
+const Utility = require('../../Utilities/utility');
 
 
 
@@ -17,8 +18,8 @@ class AddToCartActions{
         await browser.pause(2000);
     }
 
-    async enterQuantity(){
-        await AddToCartLocators.inputquantityfield.setValue(2);
+    async enterQuantity(qty){
+        await AddToCartLocators.inputquantityfield.setValue(qty);
     }
 
     async clickOnAddToCart(){
@@ -29,6 +30,15 @@ class AddToCartActions{
     async clickOnViewCart(){
         await AddToCartLocators.viewCartFromModal.click();
         // await browser.pause(2000);
+    }
+
+    async getSingleProductPrice(){
+        const productprice =  await AddToCartLocators.priceFromProductPage.getText();
+        // const productpriceinnumber = parseFloat(productprice.replace(/[$,]/g, ""));
+
+        // return productpriceinnumber;
+
+        return await Utility.convertTextToNumber(productprice);
     }
 }
 

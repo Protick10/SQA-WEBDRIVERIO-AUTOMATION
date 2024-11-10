@@ -26,6 +26,12 @@ class AddToCartLocators{
         return $("//a[contains(text(),'VIEW CART (1)')]");
     }
 
+    get priceFromProductPage(){
+        return $("//span[@class='sale-price']")
+    }
+
+    
+
 }
 
 module.exports = new AddToCartLocators();
