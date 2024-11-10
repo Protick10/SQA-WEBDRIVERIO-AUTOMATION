@@ -11,6 +11,16 @@ class SearchActions{
     async enterSearchItemName(productname){
         await searchLocators.searchInputField.setValue(productname);
     }
+
+    // async search(productname){
+    //     await this.clickOnSearchIcon();
+    //     await this.enterSearchItemName(productname);
+    //     await browser.keys("Enter");
+    // }
+
+    async selectedProduct(num){
+       return await searchLocators.productList(num).getText();
+    }
 }
 
 module.exports = new SearchActions(); // Exporting the class instance
